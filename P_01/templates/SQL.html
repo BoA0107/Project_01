@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>SQL</title>
+
+    <style>
+        #left {
+            position: fixed;
+            width: 10%
+        }
+
+        #right {
+            float: left;
+            margin-left: 10%;
+            width: 90%;
+            background-color: cornsilk
+        }
+
+
+        a {
+            text-decoration: none;
+            line-height: 30px;
+            color: #050505;
+            margin-left: 30px;
+        }
+
+
+        a:hover {
+            background-color: beige;
+            color: #ff8500;
+        }
+    </style>
+</head>
+<body>
+<div id='left'>
+    <details open>
+        <summary>Batch相关</summary>
+        {% for i in Batch %}
+            <a href="#{{ i }}">{{ i }}</a><br>
+        {% endfor %}
+    </details>
+
+    <hr>
+
+
+    <details open>
+        <summary>发布相关</summary>
+        {% for i in deploy %}
+            <a href="#{{ i }}">{{ i }}</a><br>
+        {% endfor %}
+    </details>
+
+<hr>
+
+
+    <details open>
+        <summary>收稻相关</summary>
+        {% for i in ShouDao %}
+            <a href="#{{ i }}">{{ i }}</a><br>
+        {% endfor %}
+    </details>
+
+
+<hr>
+
+
+    <details open>
+        <summary>其他SQL</summary>
+        {% for i in other %}
+            <a href="#{{ i }}">{{ i }}</a><br>
+        {% endfor %}
+    </details>
+
+
+<hr>
+</div>
+
+
+<div id='right'>
+    <div id="Batch" style="margin-left: 50px">
+        <h1>Batch相关</h1>
+        {% for i in Batch %}
+            <h3 id="{{ i }}">{{ i }}</h3>
+            {% for j in Batch[i] %}
+                {{ j }}<br>
+            {% endfor %}
+            <br>
+        {% endfor %}
+    </div>
+
+    <hr>
+    <div id="deploy" style="margin-left: 50px">
+        <h1>deploy相关</h1>
+        {% for i in deploy %}
+            <h3 id="{{ i }}">{{ i }}</h3>
+            {% for j in deploy[i] %}
+                {{ j }}<br>
+            {% endfor %}
+            <br>
+        {% endfor %}
+    </div>
+    <hr>
+    <div id="shoudao" style="margin-left: 50px">
+        <h1>收稻相关</h1>
+        {% for i in ShouDao %}
+            <h3 id="{{ i }}">{{ i }}</h3>
+            {% for j in ShouDao[i] %}
+                {{ j }}<br>
+            {% endfor %}
+            <br>
+        {% endfor %}
+    </div>
+    <hr>
+
+
+    <div id="other" style="margin-left: 50px">
+        <h1>other</h1>
+        {% for i in other %}
+            <h3 id="{{ i }}">{{ i }}</h3>
+            {% for j in other[i] %}
+                {{ j }}<br>
+            {% endfor %}
+            <br>
+        {% endfor %}
+    </div>
+    <hr>
+</div>
+</body>
+</html>
