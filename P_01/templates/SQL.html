@@ -1,39 +1,20 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
-<head>
-    <meta charset="UTF-8">
-    <title>SQL</title>
+{% extends 'Basic.html' %}
 
-    <style>
-        #left {
-            position: fixed;
-            width: 10%
-        }
+{#title#}
+{% block title %}
+    SQL
+{% endblock %}
 
-        #right {
-            float: left;
-            margin-left: 10%;
-            width: 90%;
-            background-color: cornsilk
-        }
+{% block style %}
+    #left a {
+    margin-left: 30px;
+    }
+
+{% endblock %}
 
 
-        a {
-            text-decoration: none;
-            line-height: 30px;
-            color: #050505;
-            margin-left: 30px;
-        }
-
-
-        a:hover {
-            background-color: beige;
-            color: #ff8500;
-        }
-    </style>
-</head>
-<body>
-<div id='left'>
+{#left pane#}
+{% block left %}
     <details open>
         <summary>Batch相关</summary>
         {% for i in Batch %}
@@ -46,12 +27,12 @@
 
     <details open>
         <summary>发布相关</summary>
-        {% for i in deploy %}
+        {% for i in deploy_related %}
             <a href="#{{ i }}">{{ i }}</a><br>
         {% endfor %}
     </details>
 
-<hr>
+    <hr>
 
 
     <details open>
@@ -62,7 +43,7 @@
     </details>
 
 
-<hr>
+    <hr>
 
 
     <details open>
@@ -73,11 +54,13 @@
     </details>
 
 
-<hr>
-</div>
+    <hr>
+{% endblock %}
 
 
-<div id='right'>
+
+{#right pane#}
+{% block right %}
     <div id="Batch" style="margin-left: 50px">
         <h1>Batch相关</h1>
         {% for i in Batch %}
@@ -125,6 +108,4 @@
         {% endfor %}
     </div>
     <hr>
-</div>
-</body>
-</html>
+{% endblock %}

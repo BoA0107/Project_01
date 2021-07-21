@@ -1,0 +1,124 @@
+{% extends 'Basic.html' %}
+
+{% block title %}
+    home
+{% endblock %}
+
+
+{% block left %}
+    <ul>
+        <li><a href="#links">常用链接</a></li>
+        <li><a href="#others">其他信息</a></li>
+        <li><a href="#plan_info">发布计划</a></li>
+        <li><a href="#career_level">职级对照</a></li>
+
+    </ul>
+{% endblock %}
+
+{% block right %}
+
+    {#links#}
+    <div id="links" style="margin-left: 50px">
+        <h2>常用链接</h2>
+        {% for i in links_dct %}
+            <div style="float:left">
+                <ul>
+                    <h3>{{ i }}</h3>
+                    {% for j in links_dct[i] %}
+                        <li><a href="{{ links_dct[i][j] }}" target="_blank">{{ j }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+
+    {#清除格式#}
+    <div style="clear: both"></div>
+
+    <hr>
+
+
+    {#other#}
+    <div id="others" style="margin-left: 50px">
+        <h2>其他信息</h2>
+        <div style="float: left;margin-left: 50px">
+            {% for i in range(others|length//3) %}
+                {{ others[i] }}<br>
+            {% endfor %}
+        </div>
+        <div style="float: left;margin-left: 50px">
+            {% for i in range(others|length//3,others|length//3*2) %}
+                {{ others[i] }}<br>
+            {% endfor %}
+        </div>
+        <div style="float: left;margin-left: 50px">
+            {% for i in range(others|length//3*2,others|length) %}
+                {{ others[i] }}<br>
+            {% endfor %}
+        </div>
+    </div>
+    {#清除格式#}
+    <div style="clear: both"></div>
+
+    <hr>
+
+    {#发布信息#}
+    <div id="plan_info" style="margin-left: 50px">
+        <h2>发布信息</h2>
+        <table border="1" cellspacing="0" cellpadding="5">
+            {% for i in range(plan_info|length) %}
+                {% if i==0 %}
+                    <tr>
+                        {% for j in range(plan_info[i]|length) %}
+                            <th>{{ plan_info[i][j] }}</th>
+                        {% endfor %}
+                    </tr>
+                {% elif i%2==1 %}
+                    <tr>
+                        {% for j in range(plan_info[i]|length) %}
+                            {% if  j<5 %}
+                                <td rowspan="2">{{ plan_info[i][j] }}</td>
+                            {% else %}
+                                <td>{{ plan_info[i][j] }}</td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% else %}
+                    <tr>
+                        {% for j in range(plan_info[i]|length) %}
+                            {% if  j<5 %}
+                            {% else %}
+                                <td>{{ plan_info[i][j] }}</td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+
+    <hr>
+
+    {#职级信息#}
+    <div id="career_level" style="margin-left: 50px">
+        <h2>职级对应</h2>
+        <table border="1" cellspacing="0" cellpadding="5">
+            {% for i in range(career_level|length) %}
+                {% if i==0 %}
+                    <tr>
+                        {% for j in range(career_level[i]|length) %}
+                            <th>{{ career_level[i][j] }}</th>
+                        {% endfor %}
+                    </tr>
+                {% else %}
+                    <tr>
+                        {% for j in range(career_level[i]|length) %}
+                            <td>{{ career_level[i][j] }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+
+{% endblock %}

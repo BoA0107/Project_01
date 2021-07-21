@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}父模板的title
+        {% endblock %}
+    </title>
+    <style>
+        #left {
+            position: fixed;
+            width: 10%;
+            font-size:18px
+        }
+
+        ul li {
+            list-style: none;
+        }
+
+        #right {
+            float: left;
+            margin-left: 10%;
+            width: 90%;
+            background-color: cornsilk
+        }
+
+        a {
+            text-decoration: none;
+            line-height: 30px;
+            color: #050505;
+        }
+
+        a:hover {
+            background-color: #ff8500;
+        }
+
+        {% block style %}
+        {% endblock %}
+    </style>
+</head>
+<body>
+<div id=left>
+    {% block left %}
+        left pane<br>
+    {% endblock %}
+</div>
+<div id=right>
+    {% block right %}
+        right pane<br>
+    {% endblock %}
+</div>
+
+</body>
+</html>

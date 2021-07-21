@@ -1,0 +1,108 @@
+{% extends 'Basic.html' %}
+
+{% block title %}
+    deploy
+{% endblock %}
+
+
+{% block left %}
+    <ul>
+        <li><a href="#answer">建change答案</a></li>
+        <li><a href="#branch">branch信息</a></li>
+    </ul>
+{% endblock %}
+
+
+{% block right %}
+    {##answer#}
+    <div id="answer" style="margin-left: 50px">
+        <h3>change答案</h3>
+        <table border="1" cellspacing="0" cellpadding="5">
+            {% for i in range(answer|length) %}
+                <tr>
+                    {% for j in range(answer[i]|length) %}
+                        {% if  answer[i][j]!= None %}
+                            <td>{{ answer[i][j] }}</td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <hr>
+
+    {#branch#}
+    <div id="branch" style="margin-left: 50px">
+        <h3>branch版本信息</h3>
+        <table border="1" cellspacing="0" cellpadding="5" style="float: left">
+            {% for i in range(branch|length//2+1) %}
+                {% if i == 0 %}
+                    <tr>
+                        {% for j in range(branch[i]|length) %}
+                            <th>{{ branch[i][j] }}</th>
+                        {% endfor %}
+                    </tr>
+                {% elif i%2 ==1 %}
+                    <tr>
+                        {% for j in range(branch[i]|length) %}
+                            {% if  j==0 %}
+                                <td rowspan="2">{{ branch[i][j] }}</td>
+                            {% else %}
+                                <td>{{ branch[i][j] }}</td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% else %}
+                    <tr>
+                        {% for j in range(branch[i]|length) %}
+                            {% if  j==0 %}
+                            {% else %}
+                                <td>{{ branch[i][j] }}</td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+
+        <table border="1" cellspacing="0" cellpadding="5" style="float: left">
+            {% for i in range(branch|length) %}
+                {% if i == 0 %}
+                    <tr>
+                        {% for j in range(branch[i]|length) %}
+                            <th>{{ branch[i][j] }}</th>
+                        {% endfor %}
+                    </tr>
+                {% elif i>=  branch|length//2+1 %}
+                    {% if i%2 ==1 %}
+                        <tr>
+                            {% for j in range(branch[i]|length) %}
+                                {% if  j==0 %}
+                                    <td rowspan="2">{{ branch[i][j] }}</td>
+                                {% else %}
+                                    <td>{{ branch[i][j] }}</td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                    {% else %}
+                        <tr>
+                            {% for j in range(branch[i]|length) %}
+                                {% if  j==0 %}
+                                {% else %}
+                                    <td>{{ branch[i][j] }}</td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+    <div style="clear: both"></div>
+    <hr>
+
+
+{% endblock %}
